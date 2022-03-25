@@ -25,16 +25,12 @@ int countPairs1(int *arr, int len, int value) {
     return counter;
 }
 int countPairs2(int *arr, int len, int value) {
-    mysort(arr, len);
     int counter = 0;
-    for (int i = 0; i < len; i++) {
+    for (int i = len - 1; i >= 0; i--) {
         if (value >= arr[i]) {
-            for (int j = len; j > i; j--) {
-                if (value > arr[j]) {
-                    int sum = arr[i] + arr[j];
-                    if (sum == value) {
-                        counter += 1;
-                    }
+            for (int j = i + 1; j < len; j++) {
+                if (value == arr[i] + arr[j]) {
+                    counter += 1;
                 }
             }
         }
@@ -74,12 +70,8 @@ int countPairs3(int *arr, int len, int value) {
     mysort(arr, len);
     int counter = 0;
     for (int i = 0; i < len; i++) {
-        if (value < arr[i]) {
-            break;
-        } else {
-            int ost = value - arr[i];
-            counter += cbinsearch(arr, len, ost, i);
-        }
+       int ost = value - arr[i];
+       counter += cbinsearch(arr, len, ost, i);
     }
     return counter;
 }
