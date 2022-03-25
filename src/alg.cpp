@@ -4,7 +4,7 @@ void mySort(int *arr, int len) {
     int temp = 0;
     for (int i = 0; i < len; i++) {
         for (int j = 0; j < len; j++) {
-            if(arr[j] > arr[j+1]) {
+            if (arr[j] > arr[j+1]) {
                 temp = arr[j];
                 arr[j] = arr[j+1];
                 arr[j+1] = temp;
@@ -16,16 +16,16 @@ void mySort(int *arr, int len) {
 int countPairs1(int *arr, int len, int value) {
     mySort(arr, len);
     int counter = 0;
-    for(int i = 0; i < len; i++) {
-        if(value < arr[i]) {
+    for (int i = 0; i < len; i++) {
+        if (value < arr[i]) {
             break;
         } else {
-            for(int j = i+1; j < len-1; j++) {
-                if((value - arr[i]) < arr[j]) {
+            for (int j = i+1; j < len-1; j++) {
+                if ((value - arr[i]) < arr[j]) {
                     break;
                 } else {
                     int sum = arr[i] + arr[j];
-                    if(sum == value) {
+                    if (sum == value) {
                         counter += 1;
                     }
                 }
@@ -37,16 +37,16 @@ int countPairs1(int *arr, int len, int value) {
 int countPairs2(int *arr, int len, int value) {
     mySort(arr, len);
     int counter = 0;
-    for(int i = 0; i < len; i++) {
+    for (int i = 0; i < len; i++) {
         if(value < arr[i]) {
             break;
         } else {
-            for(int j = len; j > i; j--) {
-                if(value < arr[j]) {
+            for (int j = len; j > i; j--) {
+                if (value < arr[j]) {
                     continue;
                 } else {
                     int sum = arr[i] + arr[j];
-                    if(sum == value) {
+                    if (sum == value) {
                         counter += 1;
                     }
                 }
@@ -108,8 +108,8 @@ int cbinsearch(int *arr, int size, int value) {
 int countPairs3(int *arr, int len, int value) {
     mySort(arr, len);
     int counter = 0;
-    for(int i = 0; i < len; i++) {
-        if(value < arr[i]) {
+    for (int i = 0; i < len; i++) {
+        if (value < arr[i]) {
             break;
         } else {
             int ost = value - arr[i];
