@@ -16,17 +16,16 @@ void mysort(int *arr, int len) {
 int countPairs1(int *arr, int len, int value) {
     int counter = 0;
     for (int i = 0; i < len-1; i++) {
-        if (value >= arr[i]) {
-            for (int j = i+1; j < len; j++) {
-                if (value == arr[i] + arr[j]) {
-                    counter += 1;
-                }
-            }
-        }
+         for (int j = i+1; j < len; j++) {
+             if (value == arr[i] + arr[j]) {
+                 counter += 1;
+             }
+         }
     }
     return counter;
 }
 int countPairs2(int *arr, int len, int value) {
+    mysort(arr, len);
     int counter = 0;
     for (int i = 0; i < len; i++) {
         if (value >= arr[i]) {
