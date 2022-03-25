@@ -38,7 +38,7 @@ int countPairs2(int *arr, int len, int value) {
     mysort(arr, len);
     int counter = 0;
     for (int i = 0; i < len; i++) {
-        if(value < arr[i]) {
+        if (value < arr[i]) {
             break;
         } else {
             for (int j = len; j > i; j--) {
