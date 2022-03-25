@@ -15,10 +15,10 @@ void mysort(int *arr, int len) {
 
 int countPairs1(int *arr, int len, int value) {
     int counter = 0;
-    for(int i = 0; i < len-1; i++) {
-        if(value >= arr[i]) {
-            for(int j = i+1; j < len; j++) {
-                if(value == arr[i] + arr[j]) {
+    for (int i = 0; i < len-1; i++) {
+        if (value >= arr[i]) {
+            for (int j = i+1; j < len; j++) {
+                if (value == arr[i] + arr[j]) {
                     counter += 1;
                 }
             }
@@ -28,12 +28,12 @@ int countPairs1(int *arr, int len, int value) {
 }
 int countPairs2(int *arr, int len, int value) {
     int counter = 0;
-    for(int i = 0; i < len; i++) {
-        if(value >= arr[i]) {
-            for(int j = len; j > i; j--) {
-                if(value > arr[j]) {
+    for (int i = 0; i < len; i++) {
+        if (value >= arr[i]) {
+            for (int j = len; j > i; j--) {
+                if (value > arr[j]) {
                     int sum = arr[i] + arr[j];
-                    if(sum == value) {
+                    if (sum == value) {
                         counter += 1;
                     }
                 }
