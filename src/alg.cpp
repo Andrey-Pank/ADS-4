@@ -1,6 +1,6 @@
 // Copyright 2021 NNTU-CS
 
-void mySort(int *arr, int len) {
+void mysort(int *arr, int len) {
     int temp = 0;
     for (int i = 0; i < len; i++) {
         for (int j = 0; j < len; j++) {
@@ -14,7 +14,7 @@ void mySort(int *arr, int len) {
 }
 
 int countPairs1(int *arr, int len, int value) {
-    mySort(arr, len);
+    mysort(arr, len);
     int counter = 0;
     for (int i = 0; i < len; i++) {
         if (value < arr[i]) {
@@ -35,7 +35,7 @@ int countPairs1(int *arr, int len, int value) {
     return counter;
 }
 int countPairs2(int *arr, int len, int value) {
-    mySort(arr, len);
+    mysort(arr, len);
     int counter = 0;
     for (int i = 0; i < len; i++) {
         if(value < arr[i]) {
@@ -106,7 +106,7 @@ int cbinsearch(int *arr, int size, int value) {
 }
 
 int countPairs3(int *arr, int len, int value) {
-    mySort(arr, len);
+    mysort(arr, len);
     int counter = 0;
     for (int i = 0; i < len; i++) {
         if (value < arr[i]) {
