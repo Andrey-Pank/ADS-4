@@ -56,50 +56,29 @@ int countPairs2(int *arr, int len, int value) {
     return counter;
 }
 
-int cbinsearch(int *arr, int size, int value) {
-    int j = size - 1;
-    int mid = j/2;
+int cbinsearch(int *arr, int size, int value, int index) {
     int cnt = 0;
-    if (value == arr[mid]) {
-        if (arr[mid] == arr[mid-1]) {
-            for (int i = mid; i >= 0; i--) {
-                if (arr[i] == value) {
-                    cnt += 1;
-                } else {
-                    break;
-                }
-            }
-        }
-        if (arr[mid] == arr[mid+1]) {
-            int i = mid;
-            if (0 != cnt) {
-                i += 1;
-            }
-            for (; i < size; i++) {
-                if (arr[i] == value) {
-                    cnt += 1;
-                } else {
-                    break;
-                }
-            }
-        }
-    } else if (value < arr[mid]) {
-        for (int i = mid; i >= 0; i--) {
-            if (arr[i] == value) {
+    int i = index;
+    int j = size;
+    while (i < j-1) {
+        int mid = (i + j) / 2;
+        if (arr[mid] > value) {
+            j = mid;
+        } else if (arr[mid] < value) {
+            i = mid;
+        } else {
+            cnt += 1;
+            int temp = mid + 1;
+            while ((arr[temp] == value) && (temp < j)) {
                 cnt += 1;
+                temp += 1;
             }
-            if (arr[i] == value && arr[i-1] != value) {
-                break;
-            }
-        }
-    } else if (value > arr[mid]) {
-        for (int i = mid; i < size; i++) {
-            if (arr[i] == value) {
+            temp = mid - 1;
+            while ((arr[temp] == value) && (temp > i)) {
                 cnt += 1;
+                temp -= 1;
             }
-            if (arr[i] == value && arr[i+1] != value) {
-                break;
-            }
+            break;
         }
     }
     return cnt;
@@ -113,7 +92,7 @@ int countPairs3(int *arr, int len, int value) {
             break;
         } else {
             int ost = value - arr[i];
-            counter += cbinsearch(arr, len, ost);
+            counter += cbinsearch(arr, len, ost, i);
         }
     }
     return counter;
