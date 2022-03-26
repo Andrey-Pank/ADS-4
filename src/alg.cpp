@@ -2,31 +2,37 @@
 
 void mysort(int *arr, int len) {
     int temp = 0;
-    for (int i = 0; i < len; i++) {
-        for (int j = 0; j < len; j++) {
+    bool flag = false;
+    for (int i = len - 1; i > 0; i--) {
+        flag = true;
+        for (int j = 0; j < i; j++) {
             if (arr[j] > arr[j+1]) {
                 temp = arr[j];
                 arr[j] = arr[j+1];
                 arr[j+1] = temp;
+                flag = false;
             }
+        }
+        if (flag) {
+            break;
         }
     }
 }
 
 int countPairs1(int *arr, int len, int value) {
+    mysort(arr, len);
     int counter = 0;
-    for (int i = 0; i < len-1; i++) {
-        if (value >= arr[i]) {
-            for (int j = i+1; j < len; j++) {
-                if (value == arr[i] + arr[j]) {
-                    counter += 1;
-                }
+    for (int i = 0; i < len - 1; i++) {
+        for (int j = i + 1; j < len; j++) {
+            if (value == arr[i] + arr[j]) {
+                counter += 1;
             }
         }
     }
     return counter;
 }
 int countPairs2(int *arr, int len, int value) {
+    mysort(arr, len);
     int counter = 0;
     for (int i = len - 1; i >= 0; i--) {
         if (value >= arr[i]) {
@@ -40,25 +46,25 @@ int countPairs2(int *arr, int len, int value) {
     return counter;
 }
 
-int cbinsearch(int *arr, int size, int value, int index) {
+int cbinsearch(int* arr, int len, int ost, int index) {
     int cnt = 0;
     int i = index;
-    int j = size;
+    int j = len;
     while (i < j-1) {
-        int mid = (i + j) / 2;
-        if (arr[mid] > value) {
+        int mid = (i+j) / 2;
+        if (arr[mid] > ost) {
             j = mid;
-        } else if (arr[mid] < value) {
+        } else if (arr[mid] < ost) {
             i = mid;
         } else {
             cnt += 1;
             int temp = mid + 1;
-            while ((arr[temp] == value) && (temp < j)) {
+            while ((arr[temp] == ost) && (temp < j)) {
                 cnt += 1;
                 temp += 1;
             }
             temp = mid - 1;
-            while ((arr[temp] == value) && (temp > i)) {
+            while ((arr[temp] == ost) && (temp > i)) {
                 cnt += 1;
                 temp -= 1;
             }
@@ -72,8 +78,8 @@ int countPairs3(int *arr, int len, int value) {
     mysort(arr, len);
     int counter = 0;
     for (int i = 0; i < len - 1; i++) {
-       int ost = value - arr[i];
-       counter += cbinsearch(arr, len, ost, i);
+        int ost = value - arr[i];
+        counter += cbinsearch(arr, len, ost, i);
     }
     return counter;
 }
